@@ -1,10 +1,22 @@
-
 import React, { useState, useEffect } from 'react';
 import { Clock, Shield, Heart, Settings, BarChart3, Users, Lightbulb } from 'lucide-react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+
+// Type declaration for Chrome extension APIs
+declare global {
+  interface Window {
+    chrome?: {
+      storage?: {
+        local: {
+          get: (keys: string[]) => Promise<any>;
+        };
+      };
+    };
+  }
+}
 
 const Index = () => {
   const [stats, setStats] = useState({
@@ -18,7 +30,7 @@ const Index = () => {
 
   useEffect(() => {
     // Check if this is running as extension or web app
-    if (typeof chrome !== 'undefined' && chrome.storage) {
+    if (typeof window !== 'undefined' && window.chrome?.storage) {
       setIsExtensionInstalled(true);
       loadExtensionData();
     }
@@ -26,9 +38,11 @@ const Index = () => {
 
   const loadExtensionData = async () => {
     try {
-      const result = await chrome.storage.local.get(['dailyStats']);
-      if (result.dailyStats) {
-        setStats(result.dailyStats);
+      if (window.chrome?.storage?.local) {
+        const result = await window.chrome.storage.local.get(['dailyStats']);
+        if (result.dailyStats) {
+          setStats(result.dailyStats);
+        }
       }
     } catch (error) {
       console.log('Not running as extension');
