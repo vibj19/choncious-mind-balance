@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choncious - Mindful Health Browsing</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <div class="logo">
+        <span class="logo-icon">🧘‍♀️</span>
+        <h1>Choncious</h1>
+      </div>
+      <p class="tagline">Your mindful health browsing companion</p>
+    </header>
+
+    <!-- Current Session Stats -->
+    <section class="session-stats">
+      <h2>Today's Session</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">⏱️</div>
+          <div class="stat-info">
+            <span class="stat-value" id="session-time">0:00</span>
+            <span class="stat-label">Time spent</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">📄</div>
+          <div class="stat-info">
+            <span class="stat-value" id="pages-visited">0</span>
+            <span class="stat-label">Pages visited</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Mindful Reminder -->
+    <section class="mindful-reminder">
+      <div class="reminder-content">
+        <span class="reminder-icon">💙</span>
+        <p id="mindful-message">Remember to breathe and be gentle with yourself</p>
+      </div>
+    </section>
+
+    <!-- Quick Actions -->
+    <section class="quick-actions">
+      <h3>Take a mindful break</h3>
+      <div class="action-buttons">
+        <button class="action-btn breathing" id="breathing-exercise">
+          <span class="btn-icon">🌬️</span>
+          Breathing Exercise
+        </button>
+        <button class="action-btn meditation" id="pause-browsing">
+          <span class="btn-icon">⏸️</span>
+          Pause Browsing
+        </button>
+      </div>
+    </section>
+
+    <!-- Wellness Resources -->
+    <section class="wellness-resources">
+      <h3>Professional Support</h3>
+      <div class="resource-buttons">
+        <a href="https://www.betterhelp.com" target="_blank" class="resource-btn betterhelp">
+          <div class="resource-icon">💚</div>
+          <div class="resource-info">
+            <span class="resource-name">BetterHelp</span>
+            <span class="resource-desc">Professional therapy</span>
+          </div>
+        </a>
+        <a href="https://www.headspace.com" target="_blank" class="resource-btn headspace">
+          <div class="resource-icon">🧠</div>
+          <div class="resource-info">
+            <span class="resource-name">Headspace</span>
+            <span class="resource-desc">Meditation & mindfulness</span>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- Settings Link -->
+    <footer class="footer">
+      <button class="settings-btn" id="open-settings">
+        <span class="settings-icon">⚙️</span>
+        Settings & Blocked Sites
+      </button>
+    </footer>
+  </div>
+
+  <!-- Settings Modal -->
+  <div class="modal" id="settings-modal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2>Settings</h2>
+        <button class="modal-close" id="close-settings">×</button>
+      </div>
+      
+      <div class="modal-body">
+        <!-- Thresholds -->
+        <div class="setting-group">
+          <h4>Nudge Settings</h4>
+          <div class="setting-item">
+            <label for="time-threshold">Time threshold (minutes):</label>
+            <input type="number" id="time-threshold" min="5" max="60" value="15">
+          </div>
+          <div class="setting-item">
+            <label for="page-threshold">Page threshold:</label>
+            <input type="number" id="page-threshold" min="3" max="50" value="10">
+          </div>
+          <div class="setting-item">
+            <label class="checkbox-label">
+              <input type="checkbox" id="enable-notifications" checked>
+              <span class="checkmark"></span>
+              Enable gentle reminders
+            </label>
+          </div>
+        </div>
+
+        <!-- Blocked Sites -->
+        <div class="setting-group">
+          <h4>Blocked Sites</h4>
+          <div class="blocked-sites-list" id="blocked-sites-list">
+            <!-- Dynamic content -->
+          </div>
+          <div class="add-site">
+            <input type="text" id="new-site" placeholder="Enter website to block (e.g., example.com)">
+            <button id="add-site-btn">Add</button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="modal-footer">
+        <button class="save-btn" id="save-settings">Save Changes</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>

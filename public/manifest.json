@@ -1,0 +1,52 @@
+
+{
+  "manifest_version": 3,
+  "name": "Choncious - Health Anxiety Helper",
+  "version": "1.0.0",
+  "description": "A mindful Chrome extension to help manage cyberchondria and health anxiety from digital sources",
+  "permissions": [
+    "activeTab",
+    "storage",
+    "tabs",
+    "notifications"
+  ],
+  "host_permissions": [
+    "*://*.webmd.com/*",
+    "*://*.mayoclinic.org/*",
+    "*://*.healthline.com/*",
+    "*://*.medicalnewstoday.com/*",
+    "*://*.verywellhealth.com/*",
+    "*://*.emedicinehealth.com/*",
+    "*://*.drugs.com/*",
+    "*://*.symptomchecker.com/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.webmd.com/*",
+        "*://*.mayoclinic.org/*",
+        "*://*.healthline.com/*",
+        "*://*.medicalnewstoday.com/*",
+        "*://*.verywellhealth.com/*",
+        "*://*.emedicinehealth.com/*",
+        "*://*.drugs.com/*",
+        "*://*.symptomchecker.com/*"
+      ],
+      "js": ["content.js"],
+      "css": ["content.css"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Choncious - Your Mindful Browsing Companion"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
